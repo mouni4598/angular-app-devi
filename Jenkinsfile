@@ -8,12 +8,12 @@ pipeline {
 
     stages {
         stage('Checkout Code') {
-            steps {
-                git branch: 'docker', url: 'https://github.com/mouni4598/angular-app-devi.git'
-            }
-        }
+    steps {
+        checkout([$class: 'GitSCM', branches: [[name: 'master']], userRemoteConfigs: [[url: 'https://github.com/mouni4598/angular-app-devi.git']]])
+    }
+}
 
-        stage('Build Docker Image') {
+    stage('Build Docker Image') {
             steps {
                 script {
                     docker.build("${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}")
