@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+	    docker "docker"
+     }  
 
     environment {
         DOCKER_IMAGE_NAME = "my-angular-app-tr-jenkins"
